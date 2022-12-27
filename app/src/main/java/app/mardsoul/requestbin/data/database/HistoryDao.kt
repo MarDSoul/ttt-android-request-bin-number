@@ -13,5 +13,5 @@ interface HistoryDao {
     suspend fun saveRequest(requestHistoryEntity: RequestHistoryEntity)
 
     @Query("SELECT * FROM ${RequestHistoryEntity.TABLE_NAME}")
-    fun getAllHistory(): Flow<RequestHistoryEntity>
+    fun getAllHistory(): Flow<List<RequestHistoryEntity>>
 }

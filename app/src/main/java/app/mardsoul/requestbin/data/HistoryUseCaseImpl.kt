@@ -11,9 +11,11 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 
 class HistoryUseCaseImpl(private val historyDao: HistoryDao) : HistoryUseCase {
-    override fun getHistoryRequests(): Flow<RequestHistoryItem> {
+    override fun getHistoryRequests(): Flow<List<RequestHistoryItem>> {
         return historyDao.getAllHistory()
-            .map { it.toRequestHistoryItem() }
+            .map {
+                it.map { historyEntity -> historyEntity.toRequestHistoryItem() }
+            }
             .flowOn(Dispatchers.IO)
     }
 

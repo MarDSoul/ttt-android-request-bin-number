@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="zero_dp">0dp</dimen>
+    <dimen name="padding_8dp">8dp</dimen>
+    <dimen name="padding_items_recycler_view">4dp</dimen>
+    <dimen name="bin_text_size">24sp</dimen>
+</resources>

@@ -19,7 +19,9 @@ class App : Application() {
     val historyUseCase: HistoryUseCase by lazy { HistoryUseCaseImpl(database.getHistoryDao()) }
     val searchUseCase: SearchUseCase by lazy { SearchUseCaseImpl(binlistApi) }
 
-    private val binlistApi by lazy { retrofit.create(BinlistApi::class.java) }
+    private val binlistApi by lazy {
+        retrofit.create(BinlistApi::class.java)
+    }
 
     private val retrofit by lazy {
         Retrofit.Builder()

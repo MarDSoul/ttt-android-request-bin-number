@@ -1,4 +1,4 @@
-package app.mardsoul.requestbin.data.network.entitiesdto
+package app.mardsoul.requestbin.domain.entities.dto
 
 import com.google.gson.annotations.SerializedName
 
