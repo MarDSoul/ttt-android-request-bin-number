@@ -84,11 +84,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     }
 
     private fun checkBinNumber(binNumber: String): Boolean {
-        return try {
-            binNumber.toInt() in 6..8
-        } catch (e: NumberFormatException) {
-            false
-        }
+        return binNumber.length in 6..8
     }
 
     private fun showErrorToast(@StringRes errorMessageId: Int) {
