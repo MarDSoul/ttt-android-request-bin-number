@@ -6,4 +6,5 @@
     <string name="helper_text">Enter 6 digit BIN number</string>
     <string name="is_success_text">Success</string>
     <string name="is_error_text">Error</string>
+    <string name="no_internet_error_string">No Internet</string>
 </resources>
