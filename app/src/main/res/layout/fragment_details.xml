@@ -4,13 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="@dimen/padding_8dp"
     tools:context=".ui.details.DetailsFragment">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_vert_20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_vert_80"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.8" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_hor_50"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
 
     <TextView
         android:id="@+id/bin_number_text_view"
+        style="@style/header_text_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -18,12 +40,213 @@
 
     <TextView
         android:id="@+id/scheme_text_view"
+        style="@style/title_text_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/scheme_text"
+        app:layout_constraintEnd_toEndOf="@id/guideline_vert_20"
+        app:layout_constraintStart_toStartOf="@id/guideline_vert_20"
+        app:layout_constraintTop_toBottomOf="@id/bin_number_text_view" />
+
+    <TextView
+        android:id="@+id/scheme_value_text_view"
+        style="@style/content_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/scheme_value_text"
+        app:layout_constraintEnd_toEndOf="@id/scheme_text_view"
+        app:layout_constraintStart_toStartOf="@id/scheme_text_view"
+        app:layout_constraintTop_toBottomOf="@id/scheme_text_view" />
+
+    <TextView
+        android:id="@+id/type_text_view"
+        style="@style/title_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/type_text"
+        app:layout_constraintEnd_toEndOf="@id/guideline_vert_80"
+        app:layout_constraintStart_toStartOf="@id/guideline_vert_80"
+        app:layout_constraintTop_toBottomOf="@id/bin_number_text_view" />
+
+    <TextView
+        android:id="@+id/type_value_text_view"
+        style="@style/content_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/type_value_text"
+        app:layout_constraintEnd_toEndOf="@id/type_text_view"
+        app:layout_constraintStart_toStartOf="@id/type_text_view"
+        app:layout_constraintTop_toBottomOf="@id/type_text_view" />
+
+    <TextView
+        android:id="@+id/brand_text_view"
+        style="@style/title_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/brand_text"
+        app:layout_constraintEnd_toEndOf="@id/guideline_vert_20"
+        app:layout_constraintStart_toStartOf="@id/guideline_vert_20"
+        app:layout_constraintTop_toBottomOf="@id/scheme_value_text_view" />
+
+    <TextView
+        android:id="@+id/brand_value_text_view"
+        style="@style/content_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/brand_value_text"
+        app:layout_constraintEnd_toEndOf="@id/brand_text_view"
+        app:layout_constraintStart_toStartOf="@id/brand_text_view"
+        app:layout_constraintTop_toBottomOf="@id/brand_text_view" />
+
+    <TextView
+        android:id="@+id/prepaid_text_view"
+        style="@style/title_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/prepaid_text"
+        app:layout_constraintEnd_toEndOf="@id/guideline_vert_80"
+        app:layout_constraintStart_toStartOf="@id/guideline_vert_80"
+        app:layout_constraintTop_toBottomOf="@id/type_value_text_view" />
+
+    <TextView
+        android:id="@+id/prepaid_value_text_view"
+        style="@style/content_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/prepaid_value_text"
+        app:layout_constraintEnd_toEndOf="@id/prepaid_text_view"
+        app:layout_constraintStart_toStartOf="@id/prepaid_text_view"
+        app:layout_constraintTop_toBottomOf="@id/prepaid_text_view" />
+
+    <TextView
+        android:id="@+id/card_text_view"
+        style="@style/title_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/card_number_text"
+        app:layout_constraintEnd_toEndOf="@id/guideline_vert_20"
+        app:layout_constraintStart_toStartOf="@id/guideline_vert_20"
+        app:layout_constraintTop_toBottomOf="@id/brand_value_text_view" />
+
+    <TextView
+        android:id="@+id/card_length_text_view"
+        style="@style/subtitle_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/card_length_text"
+        app:layout_constraintEnd_toStartOf="@id/space"
+        app:layout_constraintStart_toStartOf="@id/card_text_view"
+        app:layout_constraintTop_toBottomOf="@id/card_text_view" />
+
+    <Space
+        android:id="@+id/space"
+        android:layout_width="@dimen/space_between_lenght_luhn"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@id/card_luhn_text_view"
+        app:layout_constraintStart_toEndOf="@id/card_length_text_view"
+        app:layout_constraintTop_toBottomOf="@id/card_text_view" />
+
+    <TextView
+        android:id="@+id/card_luhn_text_view"
+        style="@style/subtitle_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/card_luhn_text"
+        app:layout_constraintEnd_toEndOf="@id/card_text_view"
+        app:layout_constraintStart_toEndOf="@id/space"
+        app:layout_constraintTop_toBottomOf="@id/card_text_view" />
+
+    <TextView
+        android:id="@+id/card_length_value_text_view"
+        style="@style/content_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/card_length_value_text"
+        app:layout_constraintEnd_toEndOf="@id/card_length_text_view"
+        app:layout_constraintStart_toStartOf="@id/card_length_text_view"
+        app:layout_constraintTop_toBottomOf="@id/card_length_text_view" />
+
+    <TextView
+        android:id="@+id/card_luhn_value_text_view"
+        style="@style/content_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/card_luhn_value_text"
+        app:layout_constraintEnd_toEndOf="@id/card_luhn_text_view"
+        app:layout_constraintStart_toStartOf="@id/card_luhn_text_view"
+        app:layout_constraintTop_toBottomOf="@id/card_luhn_text_view" />
+
+    <TextView
+        android:id="@+id/country_text_view"
+        style="@style/title_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/country_text"
+        app:layout_constraintEnd_toEndOf="@id/guideline_vert_80"
+        app:layout_constraintStart_toStartOf="@id/guideline_vert_80"
+        app:layout_constraintTop_toBottomOf="@id/prepaid_value_text_view" />
+
+    <TextView
+        android:id="@+id/country_value_text_view"
+        style="@style/content_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/country_value_text"
+        app:layout_constraintEnd_toEndOf="@id/country_text_view"
+        app:layout_constraintStart_toStartOf="@id/country_text_view"
+        app:layout_constraintTop_toBottomOf="@id/country_text_view" />
+
+    <TextView
+        android:id="@+id/country_lat_lon_text_view"
+        style="@style/small_content_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/country_lat_lon_text"
+        app:layout_constraintEnd_toEndOf="@id/country_text_view"
+        app:layout_constraintStart_toStartOf="@id/country_text_view"
+        app:layout_constraintTop_toBottomOf="@id/country_value_text_view" />
+
+    <TextView
+        android:id="@+id/bank_text_view"
+        style="@style/title_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bank_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/bin_number_text_view"
-        tools:text="Mastercard" />
+        app:layout_constraintTop_toBottomOf="@id/guideline_hor_50" />
+
+    <TextView
+        android:id="@+id/bank_name_text_view"
+        style="@style/subtitle_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bank_name_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bank_text_view" />
+
+    <TextView
+        android:id="@+id/bank_url_text_view"
+        style="@style/subtitle_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autoLink="web"
+        android:text="@string/bank_url_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bank_name_text_view" />
+
+    <TextView
+        android:id="@+id/bank_phone_text_view"
+        style="@style/subtitle_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autoLink="phone"
+        android:text="@string/bank_phone_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bank_url_text_view" />
 
     <Button
         android:id="@+id/back_test_button"

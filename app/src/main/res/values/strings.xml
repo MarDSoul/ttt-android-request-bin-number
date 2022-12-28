@@ -7,4 +7,26 @@
     <string name="is_success_text">Success</string>
     <string name="is_error_text">Error</string>
     <string name="no_internet_error_string">No Internet</string>
+
+    <!--    Details fragment-->
+    <string name="scheme_text">SCHEME / NETWORK</string>
+    <string name="scheme_value_text">%s</string>
+    <string name="brand_text">BRAND</string>
+    <string name="brand_value_text">%s</string>
+    <string name="card_number_text">CARD NUMBER</string>
+    <string name="card_length_text">LENGTH</string>
+    <string name="card_length_value_text">%d</string>
+    <string name="card_luhn_text">LUHN</string>
+    <string name="card_luhn_value_text">%s</string>
+    <string name="type_text">TYPE</string>
+    <string name="type_value_text">%s</string>
+    <string name="prepaid_text">PREPAID</string>
+    <string name="prepaid_value_text">%s</string>
+    <string name="country_text">COUNTRY</string>
+    <string name="country_value_text">%1$s %2$s</string>
+    <string name="country_lat_lon_text">(latitude: %1$d, longitude: %2$d)</string>
+    <string name="bank_text">BANK</string>
+    <string name="bank_name_text">%s</string>
+    <string name="bank_url_text">%s</string>
+    <string name="bank_phone_text">%s</string>
 </resources>
