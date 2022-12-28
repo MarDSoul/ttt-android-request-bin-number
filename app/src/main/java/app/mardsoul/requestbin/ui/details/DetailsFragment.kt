@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import app.mardsoul.requestbin.R
 import app.mardsoul.requestbin.app
@@ -27,10 +26,9 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(FragmentDetailsBind
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initViews()
         lifecycleScope.launch {
             viewModel.uiState.collect {
-                bindInformation(it)
+                bindInformation(it.binInformationDto)
             }
         }
         viewModel.searchBinInformation(args.binNumber)
@@ -75,12 +73,6 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(FragmentDetailsBind
                 getString(R.string.bank_url_text, binInformationDto?.bankDto?.url)
             bankPhoneTextView.text =
                 getString(R.string.bank_phone_text, binInformationDto?.bankDto?.phone)
-        }
-    }
-
-    private fun initViews() {
-        binding.backTestButton.setOnClickListener {
-            findNavController().navigateUp()
         }
     }
 }

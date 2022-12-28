@@ -16,14 +16,16 @@ class DetailsViewModel(
     private val historyUseCase: HistoryUseCase
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow<BinInformationDto?>(null)
+    private val _uiState = MutableStateFlow(DetailsUiState())
     val uiState = _uiState.asStateFlow()
 
     fun searchBinInformation(binNumber: String) {
         viewModelScope.launch {
-            val value = searchUseCase.getBinInformation(binNumber)
-            _uiState.value = value
-            saveRequest(binNumber, value)
+            if (uiState.value.binNumber != binNumber) {
+                val value = searchUseCase.getBinInformation(binNumber)
+                _uiState.value = DetailsUiState(binNumber, value)
+                saveRequest(binNumber, value)
+            }
         }
     }
 

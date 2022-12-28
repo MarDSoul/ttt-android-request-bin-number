@@ -1,6 +1,5 @@
 package app.mardsoul.requestbin.ui.search
 
-import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -24,15 +23,13 @@ class HistoryAdapter(private val onClickItemHistory: OnClickItemHistory) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(historyItem: RequestHistoryItem) {
             with(binding) {
-                root.tag = historyItem.binNumber
+                root.tag = historyItem
                 timeRequestTextView.text = historyItem.timeRequest.getTime()
                 dateRequestTextView.text = historyItem.timeRequest.getDate()
                 binNumberTextView.text = historyItem.binNumber
                 if (historyItem.isRequestSuccess) {
                     isSuccessImageView.setImageResource(R.drawable.ic_baseline_done_24)
                     isSuccessTextView.setText(R.string.is_success_text)
-                    root.setOnClickListener(onClickItemHistory)
-                    binNumberTextView.typeface = Typeface.DEFAULT_BOLD
                 } else {
                     isSuccessImageView.setImageResource(R.drawable.ic_baseline_block_24)
                     isSuccessTextView.setText(R.string.is_error_text)
@@ -43,7 +40,9 @@ class HistoryAdapter(private val onClickItemHistory: OnClickItemHistory) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = ItemHistoryRequestBinding.inflate(inflater, parent, false)
+        val binding = ItemHistoryRequestBinding.inflate(inflater, parent, false).apply {
+            root.setOnClickListener(onClickItemHistory)
+        }
         return HistoryViewHolder(binding)
     }
 

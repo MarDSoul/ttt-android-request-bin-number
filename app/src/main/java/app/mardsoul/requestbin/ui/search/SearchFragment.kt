@@ -15,6 +15,7 @@ import androidx.navigation.fragment.findNavController
 import app.mardsoul.requestbin.R
 import app.mardsoul.requestbin.app
 import app.mardsoul.requestbin.databinding.FragmentSearchBinding
+import app.mardsoul.requestbin.domain.entities.RequestHistoryItem
 import app.mardsoul.requestbin.ui.BaseFragment
 
 class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding::inflate),
@@ -96,8 +97,12 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     }
 
     override fun onClick(view: View) {
-        val binNumber = view.tag as String
-        sendRequestOrShowToast(binNumber)
+        val requestHistoryItem = view.tag as RequestHistoryItem
+        if (requestHistoryItem.isRequestSuccess) {
+            sendRequestOrShowToast(requestHistoryItem.binNumber)
+        } else {
+            showErrorToast(R.string.incorrect_bin_error_string)
+        }
     }
 }
 

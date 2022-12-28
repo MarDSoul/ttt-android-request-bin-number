@@ -5,12 +5,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import app.mardsoul.requestbin.domain.HistoryUseCase
 import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.shareIn
+import kotlinx.coroutines.flow.stateIn
 
 class SearchViewModel(private val historyUseCase: HistoryUseCase) : ViewModel() {
 
     val requestHistoryList = historyUseCase.getHistoryRequests()
-        .shareIn(viewModelScope, SharingStarted.Eagerly)
+        .stateIn(viewModelScope, SharingStarted.Eagerly, listOf())
 }
 
 class SearchViewModelFactory(private val historyUseCase: HistoryUseCase) :
