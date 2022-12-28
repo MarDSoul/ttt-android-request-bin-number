@@ -7,13 +7,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class SearchUseCaseImpl(private val binlistApi: BinlistApi) : SearchUseCase {
-    override suspend fun getBinInformation(binNumber: String): BinInformationDto {
+    override suspend fun getBinInformation(binNumber: String): BinInformationDto? {
         return withContext(Dispatchers.IO) {
             val response = binlistApi.getBinInformation(binNumber)
             if (response.isSuccessful && response.body() != null) {
                 return@withContext response.body()!!
             } else {
-                throw Exception()
+                return@withContext null
             }
         }
     }
