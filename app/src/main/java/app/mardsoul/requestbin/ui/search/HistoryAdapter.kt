@@ -1,13 +1,17 @@
 package app.mardsoul.requestbin.ui.search
 
+import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import app.mardsoul.requestbin.R
 import app.mardsoul.requestbin.databinding.ItemHistoryRequestBinding
 import app.mardsoul.requestbin.domain.entities.RequestHistoryItem
+import app.mardsoul.requestbin.utils.getDate
+import app.mardsoul.requestbin.utils.getTime
 
-class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
+class HistoryAdapter(private val onClickItemHistory: OnClickItemHistory) :
+    RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
 
     private var historyRequestList = listOf<RequestHistoryItem>()
 
@@ -20,12 +24,15 @@ class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() 
         RecyclerView.ViewHolder(binding.root) {
         fun bind(historyItem: RequestHistoryItem) {
             with(binding) {
-                timeRequestTextView.text = historyItem.timeRequest.toString()
-                dateRequestTextView.text = historyItem.timeRequest.toString()
-                binNumberTextView.text = historyItem.binNumber.toString()
+                root.tag = historyItem.binNumber
+                timeRequestTextView.text = historyItem.timeRequest.getTime()
+                dateRequestTextView.text = historyItem.timeRequest.getDate()
+                binNumberTextView.text = historyItem.binNumber
                 if (historyItem.isRequestSuccess) {
                     isSuccessImageView.setImageResource(R.drawable.ic_baseline_done_24)
                     isSuccessTextView.setText(R.string.is_success_text)
+                    root.setOnClickListener(onClickItemHistory)
+                    binNumberTextView.typeface = Typeface.DEFAULT_BOLD
                 } else {
                     isSuccessImageView.setImageResource(R.drawable.ic_baseline_block_24)
                     isSuccessTextView.setText(R.string.is_error_text)

@@ -16,7 +16,7 @@ data class RequestHistoryEntity(
     val timeRequest: Long,
 
     @ColumnInfo(name = COLUMN_NAME_BIN_NUMBER)
-    val binNumber: Int,
+    val binNumber: String,
 
     @ColumnInfo(name = COLUMN_NAME_IS_SUCCESS)
     val isRequestSuccess: Boolean

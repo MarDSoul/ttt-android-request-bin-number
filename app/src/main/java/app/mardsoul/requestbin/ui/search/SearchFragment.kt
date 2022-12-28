@@ -5,8 +5,10 @@ import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.annotation.RequiresPermission
+import androidx.annotation.StringRes
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -15,13 +17,14 @@ import app.mardsoul.requestbin.app
 import app.mardsoul.requestbin.databinding.FragmentSearchBinding
 import app.mardsoul.requestbin.ui.BaseFragment
 
-class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding::inflate) {
+class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding::inflate),
+    OnClickItemHistory {
 
     private val viewModel: SearchViewModel by viewModels {
         SearchViewModelFactory(requireContext().app.historyUseCase)
     }
 
-    private val adapter = HistoryAdapter()
+    private val adapter = HistoryAdapter(this as OnClickItemHistory)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -37,14 +40,16 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         with(binding) {
             historyRecyclerView.adapter = adapter
             outlinedTextField.setEndIconOnClickListener {
-                sendRequestOrShowToast { searchBinInformation(editText.text.toString()) }
+                sendRequestOrShowToast(editText.text.toString())
             }
-        }
-
-        binding.searchTestButton.setOnClickListener {
-            val navDirection =
-                SearchFragmentDirections.actionSearchFragmentToDetailsFragment("000000")
-            findNavController().navigate(navDirection)
+            editText.setOnEditorActionListener { textView, id, keyEvent ->
+                if (id == EditorInfo.IME_ACTION_SEARCH) {
+                    sendRequestOrShowToast(textView.text.toString())
+                    true
+                } else {
+                    false
+                }
+            }
         }
     }
 
@@ -62,15 +67,42 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         return networkInfo?.isConnected == true
     }
 
-    private fun sendRequestOrShowToast(action: () -> Unit) {
+    private fun sendRequestOrShowToast(binNumber: String) {
         if (isOnline()) {
-            action()
+            checkBinOrShowToast(binNumber)
         } else {
-            Toast.makeText(
-                requireContext(),
-                getString(R.string.no_internet_error_string),
-                Toast.LENGTH_SHORT
-            ).show()
+            showErrorToast(R.string.no_internet_error_string)
         }
     }
+
+    private fun checkBinOrShowToast(binNumber: String) {
+        if (checkBinNumber(binNumber)) {
+            searchBinInformation(binNumber)
+        } else {
+            showErrorToast(R.string.incorrect_bin_error_string)
+        }
+    }
+
+    private fun checkBinNumber(binNumber: String): Boolean {
+        return try {
+            binNumber.toInt() in 6..8
+        } catch (e: NumberFormatException) {
+            false
+        }
+    }
+
+    private fun showErrorToast(@StringRes errorMessageId: Int) {
+        Toast.makeText(
+            requireContext(),
+            getString(errorMessageId),
+            Toast.LENGTH_SHORT
+        ).show()
+    }
+
+    override fun onClick(view: View) {
+        val binNumber = view.tag as String
+        sendRequestOrShowToast(binNumber)
+    }
 }
+
+interface OnClickItemHistory : View.OnClickListener

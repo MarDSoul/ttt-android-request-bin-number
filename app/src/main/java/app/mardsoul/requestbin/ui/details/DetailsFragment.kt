@@ -17,7 +17,10 @@ import kotlinx.coroutines.launch
 class DetailsFragment : BaseFragment<FragmentDetailsBinding>(FragmentDetailsBinding::inflate) {
 
     private val viewModel: DetailsViewModel by viewModels {
-        DetailsViewModelFactory(requireContext().app.searchUseCase)
+        DetailsViewModelFactory(
+            requireContext().app.searchUseCase,
+            requireContext().app.historyUseCase
+        )
     }
 
     private val args: DetailsFragmentArgs by navArgs()

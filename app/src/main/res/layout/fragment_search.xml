@@ -12,11 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/label_text"
-        app:counterEnabled="true"
-        app:counterMaxLength="6"
         app:endIconDrawable="@drawable/ic_baseline_search_24"
         app:endIconMode="custom"
-        app:errorIconDrawable="@drawable/ic_baseline_search_off_24"
         app:helperText="@string/helper_text"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -35,14 +32,5 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/outlined_text_field" />
-
-    <Button
-        android:id="@+id/search_test_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="To Details Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
