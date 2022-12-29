@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="header_text_style">
+        <item name="android:paddingTop">@dimen/padding_8dp</item>
+        <item name="android:paddingBottom">@dimen/padding_8dp</item>
+        <item name="android:textSize">@dimen/header_text_size_dimen</item>
+    </style>
+
+    <style name="title_text_style">
+        <item name="android:paddingTop">@dimen/padding_8dp</item>
+        <item name="android:textSize">@dimen/title_text_size_dimen</item>
+    </style>
+
+    <style name="subtitle_text_style">
+        <item name="android:textSize">@dimen/subtitle_text_size_dimen</item>
+        <item name="android:paddingTop">@dimen/padding_4dp</item>
+    </style>
+
+    <style name="content_text_style">
+        <item name="android:textSize">@dimen/text_size_dimen</item>
+    </style>
+
+    <style name="small_content_text_style">
+        <item name="android:textSize">@dimen/small_text_size_dimen</item>
+    </style>
+</resources>
