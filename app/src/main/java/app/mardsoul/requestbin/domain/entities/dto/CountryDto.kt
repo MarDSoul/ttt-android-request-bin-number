@@ -10,9 +10,9 @@ data class CountryDto(
     @SerializedName("emoji")
     val emoji: String,
     @SerializedName("latitude")
-    val latitude: Int,
+    val latitude: Float,
     @SerializedName("longitude")
-    val longitude: Int,
+    val longitude: Float,
     @SerializedName("name")
     val name: String,
     @SerializedName("numeric")
