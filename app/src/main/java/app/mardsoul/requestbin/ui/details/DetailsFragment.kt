@@ -3,6 +3,8 @@ package app.mardsoul.requestbin.ui.details
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import app.mardsoul.requestbin.R
@@ -27,9 +29,11 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(FragmentDetailsBind
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         lifecycleScope.launch {
-            viewModel.uiState.collect {
-                bindInformation(it.binInformationDto)
-            }
+            viewModel.uiState
+                .flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
+                .collect {
+                    bindInformation(it.binInformationDto)
+                }
         }
         viewModel.searchBinInformation(args.binNumber)
     }

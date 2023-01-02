@@ -10,6 +10,8 @@ import android.widget.Toast
 import androidx.annotation.RequiresPermission
 import androidx.annotation.StringRes
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import app.mardsoul.requestbin.R
@@ -31,9 +33,11 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         super.onViewCreated(view, savedInstanceState)
         initViews()
         lifecycleScope.launchWhenResumed {
-            viewModel.requestHistoryList.collect {
-                adapter.setHistoryList(it)
-            }
+            viewModel.requestHistoryList
+                .flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
+                .collect {
+                    adapter.setHistoryList(it)
+                }
         }
     }
 

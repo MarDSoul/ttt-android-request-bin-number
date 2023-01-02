@@ -25,7 +25,7 @@
     <string name="prepaid_value_text">%s</string>
     <string name="country_text">COUNTRY</string>
     <string name="country_value_text">%1$s %2$s</string>
-    <string name="country_lat_lon_text">(latitude: %1$d, longitude: %2$d)</string>
+    <string name="country_lat_lon_text">(latitude: %1$.2f, longitude: %2$.2f)</string>
     <string name="bank_text">BANK</string>
     <string name="bank_name_text">%s</string>
     <string name="bank_url_text">%s</string>
